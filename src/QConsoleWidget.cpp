@@ -14,6 +14,7 @@
 #include <QAbstractItemView>
 #include <QClipboard>
 #include <QMimeData>
+#include <QFile>
 
 QConsoleWidget::QConsoleWidget(QWidget* parent)
     : QPlainTextEdit(parent), mode_(Output), completer_(0)
@@ -523,7 +524,7 @@ QConsoleWidget::History::~History(void)
     if (f.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream os(&f);
         int n = strings_.size();
-        while(n>0) os << strings_.at(--n) << endl;
+        while(n>0) os << strings_.at(--n) << Qt::endl;
     }
 }
 
